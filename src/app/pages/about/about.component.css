@@ -1,12 +1,24 @@
 /* =========================
+   VARIABLES DE ANIMACIÓN
+========================= */
+:root {
+  --ease-smooth: cubic-bezier(.22, 1, .36, 1);
+  --t-slow: 1.2s;
+  --t-mid: 0.8s;
+  --t-fast: 0.5s;
+}
+
+/* =========================
    CONTENEDOR GENERAL
 ========================= */
 .contenedor {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;min-height: 100vh;            /* 💥 CLAVE */
-  padding: 3rem 8rem 1rem;      /* usa padding, no margin */
+  gap: 2rem;
+
+  min-height: 100vh;
+  padding: 3rem 8rem 1rem;
   box-sizing: border-box;
 }
 
@@ -15,10 +27,11 @@
 ========================= */
 .about-text {
   max-width: 55%;
+  will-change: transform;
   transition:
-    max-width 1.2s cubic-bezier(.22, 1, .36, 1),
-    padding-right 1.2s cubic-bezier(.22, 1, .36, 1),
-    transform 0.6s cubic-bezier(.22, 1, .36, 1);
+    max-width var(--t-slow) var(--ease-smooth),
+    padding var(--t-slow) var(--ease-smooth),
+    transform var(--t-fast) var(--ease-smooth);
 }
 
 .about-text.expand {
@@ -37,100 +50,76 @@
 }
 
 /* =========================
-   IMAGEN (WRAPPER)
+   IMAGEN
 ========================= */
 .image-wrapper {
   position: relative;
   flex-shrink: 0;
+
   display: flex;
   justify-content: center;
+
   transform-origin: top center;
-  overflow: hidden;          /* CLAVE */
-  max-height: 500px;         /* suficiente para la imagen */
-  transition: max-height 0.6s cubic-bezier(.22, 1, .36, 1);
+  will-change: transform, opacity;
 }
 
-/* animaciones solo desktop */
+/* Desktop animations only */
 @media (min-width: 1025px) {
   .image-wrapper {
     transition:
-      top 1.2s cubic-bezier(.22, 1, .36, 1),
-      right 1.2s cubic-bezier(.22, 1, .36, 1);
+      transform var(--t-slow) var(--ease-smooth);
   }
 
-/* =========================
-   IMAGEN (CONTENIDO REAL)
-========================= */
- .image-wrapper app-image-particles {
-    display: block;
-    transform-origin: top center;
-  }
-
-/* estado compacto (desktop) */
-.image-wrapper.compact {
+  .image-wrapper.compact {
     position: fixed;
     top: 7rem;
     right: 8rem;
     z-index: 20;
+    transform: scale(0.6);
   }
+}
+
+/* =========================
+   PARTICLES
+========================= */
+.image-wrapper app-image-particles {
+  display: block;
+  transform-origin: top center;
+}
+
+/* =========================
+   VANISH STATES
+========================= */
+.image-wrapper.vanish {
+  animation: vanish-soft var(--t-mid) var(--ease-smooth) forwards;
+  pointer-events: none;
 }
 
 .image-wrapper.vanish + .about-text {
   transform: translateY(-8px);
 }
 
-@keyframes shrink-after-reveal {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(0.6);
-  }
-}
-
-@keyframes shrink-only {
+@keyframes vanish-soft {
   from {
     transform: scale(1);
     opacity: 1;
   }
   to {
     transform: scale(0.6);
-    opacity: 1;
-  }
-}
-
-@keyframes shrink-and-disappear {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  70% {
-    transform: scale(0.25);
-    opacity: 0.3;
-  }
-
-  100% {
-    transform: scale(0);
     opacity: 0;
   }
-}
-
-.image-wrapper.vanish {
-  animation: shrink-only 1s cubic-bezier(.22, 1, .36, 1) forwards;
-  pointer-events: none;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-/* Tablet: ≤1024px */
+/* Tablet ≤1024px */
 @media (max-width: 1024px) {
   .contenedor {
     flex-direction: column;
-    margin-top: 5rem;
-    gap: 0;
+    gap: 1rem;
+    padding: 2rem 4rem 1rem;
   }
 
   .about-text {
@@ -140,15 +129,13 @@
 
   .image-wrapper {
     order: -1;
-    margin-bottom: 1rem;
   }
 }
 
-/* Mobile: ≤768px */
+/* Mobile ≤768px */
 @media (max-width: 768px) {
-  .contenedor{
-    margin-top: 1rem;
-    padding: 1rem 3rem 1rem; 
+  .contenedor {
+    padding: 1.5rem 2.5rem 1rem;
   }
 
   .about-text h1 {
@@ -158,15 +145,16 @@
   .about-text p {
     font-size: 1rem;
   }
-
 }
 
-/* Mobile pequeño: ≤480px (solo si es necesario) */
+/* =========================
+   MOBILE PEQUEÑO ≤480px
+   (sin layout shifts)
+========================= */
 @media (max-width: 480px) {
   .contenedor {
     align-items: flex-start;
-    margin-top: 0.5rem;
-    padding: 1rem 2rem 1rem;
+    padding: 1rem 1.5rem;
   }
 
   .about-text h1 {
@@ -179,21 +167,18 @@
 
   .about-text.expand {
     max-width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding: 0;
   }
 
+  /* SOLO transform + opacity */
   .image-wrapper.vanish {
-    animation: shrink-and-disappear 1s cubic-bezier(.22, 1, .36, 1) forwards;
-
-    max-height: 0;
-    transition:max-height 0.6s cubic-bezier(.22, 1, .36, 1);
-    transition-delay: 0.6s; /* espera a que la imagen ya esté muriendo */
-    margin-bottom: 0;
+    animation: vanish-mobile var(--t-fast) ease-out forwards;
   }
 
-   .image-wrapper.vanish + .about-text {
-    transform: translateY(-8px);
+  @keyframes vanish-mobile {
+    to {
+      transform: scale(0.85) translateY(-12px);
+      opacity: 0;
+    }
   }
 }
-
