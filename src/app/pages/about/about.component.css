@@ -129,7 +129,7 @@
 @media (max-width: 1024px) {
   .contenedor {
     flex-direction: column;
-    margin: 3rem 4rem 2rem;
+    margin-top: 5rem;
     gap: 0;
   }
 
@@ -146,8 +146,9 @@
 
 /* Mobile: ≤768px */
 @media (max-width: 768px) {
-  .contenedor {
-    margin: 2rem 1.5rem;
+  .contenedor{
+    margin-top: 1rem;
+    padding: 1rem 3rem 1rem; 
   }
 
   .about-text h1 {
@@ -163,7 +164,6 @@
 /* Mobile pequeño: ≤480px (solo si es necesario) */
 @media (max-width: 480px) {
   .contenedor {
-    margin: 1.5rem 1rem;
     align-items: flex-start;
   }
 
