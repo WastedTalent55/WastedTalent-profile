@@ -1,6 +1,6 @@
 <app-navbar />
 <div class="contenedor">
-    <div class="about-text" [class.expand]="imageCompact">
+    <div class="about-text">
         <h1>Sobre mí</h1>
         <p>
             ¡Hola! Soy Diego :) Soy desarrollador en formación con una curiosidad constante. <b>Wasted Talent</b> es mi espacio para probar ideas, aprender haciendo y entender cómo la tecnología puede ser funcional y expresiva al mismo tiempo.
@@ -15,7 +15,7 @@
         </p> 
     </div>
     
-    <div class="image-wrapper" [class.compact]="imageCompact">
+    <div class="image-wrapper" [class.vanish]="hideImage">
         <app-image-particles (animationDone)="onImageDone()"></app-image-particles>
     </div>
 </div>

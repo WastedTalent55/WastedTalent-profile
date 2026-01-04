@@ -12,11 +12,12 @@ import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 export class AboutComponent {
  imageCompact = false;
+ hideImage = false;
 
   onImageDone() {
-    // pequeña pausa para que se disfrute el momento
-    setTimeout(() => {
-      this.imageCompact = true;
-    }, 180);
+  setTimeout(() => {
+    this.hideImage = true;
+  }, 1200);
   }
 }
+
