@@ -1,0 +1,44 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 70px;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 0 3rem;
+
+  backdrop-filter: blur(8px);
+  border-left: 2px solid var(--color-accent-soft);
+  border-bottom: 3px solid var(--color-accent-soft);
+  border-bottom-left-radius: 15px;
+  margin-left: 2rem;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.menu a {
+  all: unset; 
+  font-weight: bold;
+  color: var(--color-accent-light);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: var(--color-text); 
+}
+
+.nav-btn.active {
+  opacity: 1;
+  color: var(--color-accent-soft);
+}
+
+

@@ -1,0 +1,58 @@
+.contenedor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem 8rem 1rem;
+}
+
+/* ───────── TEXTO ───────── */
+
+.about-text {
+  max-width: 55%;
+  transition:
+    max-width 1.2s cubic-bezier(.22,1,.36,1),
+    padding 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+.about-text.expand {
+  max-width: 75%;
+  padding-right: 4rem;
+}
+
+.about-text h1 {
+  color: #bfa0ff;
+}
+
+.about-text p {
+  color: #f7f7f7;
+  text-align: justify;
+  margin-top: 0.5rem;
+}
+
+/* ───────── IMAGEN ───────── */
+
+.image-wrapper {
+  position: relative;
+  flex-shrink: 0;
+
+  transition:
+    transform 1.15s cubic-bezier(.34,1.56,.64,1),
+    top 1.2s cubic-bezier(.22,1,.36,1),
+    right 1.2s cubic-bezier(.22,1,.36,1);
+}
+
+/* respiración previa */
+.image-wrapper.pre-compact {
+  transform: scale(1.04);
+}
+
+/* estado final */
+.image-wrapper.compact {
+  position: fixed;
+  top: 7rem;
+  right: 8rem;
+
+  transform: scale(0.5);
+  transform-origin: top right;
+  z-index: 20;
+}

@@ -1,0 +1,22 @@
+<app-navbar />
+<div class="contenedor">
+    <div class="about-text" [class.expand]="imageCompact">
+        <h1>Sobre mí</h1>
+        <p>
+            ¡Hola! Soy Diego :) Soy desarrollador en formación con una curiosidad constante. <b>Wasted Talent</b> es mi espacio para probar ideas, aprender haciendo y entender cómo la tecnología puede ser funcional y expresiva al mismo tiempo.
+            <br><br>
+            Trabajo con <b>HTML, CSS y JavaScript</b>, y he desarrollado proyectos con <b>React y Angular</b>, cuidando tanto la estructura como la experiencia visual. Me interesa que un sitio funcione bien, pero también que tenga intención, ritmo y personalidad, por eso exploro código creativo con <b>p5.js</b>, animaciones y pequeñas interacciones.
+            <br><br>
+            También tengo bases en <b>MySQL, Python</b> y manejo de datos, lo que me permite entender el flujo completo de la información, desde la interfaz hasta la lógica detrás. Soy ordenado, adaptable y aprendo rápido. No me especializo en un solo frente: me interesa crecer donde el proyecto lo necesite.
+            <br><br>
+            Actualmente estudio <b>Ingeniería en Software (UVEG)</b>. Aún no tengo experiencia laboral formal, pero sí muchas ganas de <b>aprender, experimentar y aportar</b>.
+            <br><br>
+            Fuera del código, desarrollo <b>HandyQueer</b>, un proyecto de remodelación y mantenimiento de espacios seguros para mujeres y disidencias, lo que ha fortalecido mi forma de trabajar con <b>responsabilidad, empatía y atención al detalle</b>.
+        </p> 
+    </div>
+    
+    <div class="image-wrapper" [class.compact]="imageCompact">
+        <app-image-particles (animationDone)="onImageDone()"></app-image-particles>
+    </div>
+</div>
+

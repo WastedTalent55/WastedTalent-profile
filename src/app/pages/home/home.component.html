@@ -1,0 +1,52 @@
+<div class="home">
+  <div class="left-panel">
+    <img src="assets/img/logoRectangulo.png" alt="">
+    <div class="menu">
+      <button type="button" routerLink="/about">Sobre Mi</button>
+      <button type="button" routerLink="/work">Mi Trabajo</button>
+      <button type="button" routerLink="/contact">Contactame</button>
+    </div>
+  </div>
+  <div class="right-panel">
+    <section class="presentacion-txt" id="about">
+      <a routerLink="/about" class="section-link">
+        <h1>Sobre Mi <span class="plus">+</span></h1>
+      </a>
+      <div class="margen-secciones">
+        <p class="aboutMe-text">  
+          <b>Wasted Talent</b> es mi espacio para experimentar y crecer como desarrollador.
+          Estoy comenzando en el mundo tech, con bases en desarrollo web, datos y código creativo. Me mueve la curiosidad, aprender rápido y construir cosas que funcionen y se sientan bien.
+        </p>
+      </div>
+    </section>
+    <section id="work">
+      <a routerLink="/work" class="section-link">
+        <h1>Mi Trabajo <span class="plus">+</span></h1>
+      </a>
+      <div class="margen-secciones">
+        <div class="project-list">
+          <app-project-card
+            *ngFor="let project of projects"
+            [title]="project.title"
+            [description]="project.description"
+            [imageUrl]="project.imageUrl"
+            [link]="project.link">
+          </app-project-card>
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <a routerLink="/contact" class="section-link">
+        <h1>Contactame <span class="plus">+</span></h1>
+      </a>
+      <div class="margen-secciones">
+        <div class="say-hi">
+          <p>¿Te interesa que trabajemos juntXs? ¡Platicame tu idea!</p>
+          <a href="mailto:devdiego.lm@gmail.com" class="email-link">devdiego.lmgmail.com</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
