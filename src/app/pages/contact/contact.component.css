@@ -144,6 +144,13 @@
 
 
 /* Responsive */
+
+/* Desktop grande: >1024px (sin media) */
+/* Tablet: ≤1024px */
+/* Mobile: ≤768px */
+/* Mobile pequeño: ≤480px (solo si es necesario) */
+
+
 @media (max-width: 768px) {
   .contact-content {
     flex-direction: column;

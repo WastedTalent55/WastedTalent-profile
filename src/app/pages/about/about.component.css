@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 3rem 8rem 1rem;
   gap: 2rem;
+  margin: 3rem 8rem 1rem;
 }
 
 /* =========================
@@ -42,76 +42,72 @@
   flex-shrink: 0;
   display: flex;
   justify-content: center;
-
-  transition:
-    top 1.2s cubic-bezier(.22, 1, .36, 1),
-    right 1.2s cubic-bezier(.22, 1, .36, 1);
 }
+
+/* animaciones solo desktop */
+@media (min-width: 1025px) {
+  .image-wrapper {
+    transition:
+      top 1.2s cubic-bezier(.22, 1, .36, 1),
+      right 1.2s cubic-bezier(.22, 1, .36, 1);
+  }
 
 /* =========================
    IMAGEN (CONTENIDO REAL)
 ========================= */
-.image-wrapper app-image-particles {
-  display: block;
-  transform-origin: top center;
-  transition: transform 0.9s cubic-bezier(.34, 1.56, .64, 1);
-}
+ .image-wrapper app-image-particles {
+    display: block;
+    transform-origin: top center;
+    transition: transform 0.9s cubic-bezier(.34, 1.56, .64, 1);
+  }
 
 /* respiración previa */
 .image-wrapper.pre-compact app-image-particles {
-  transform: scale(1.04);
-}
+    transform: scale(1.04);
+  }
 
 /* estado compacto (desktop) */
 .image-wrapper.compact {
-  position: fixed;
-  top: 7rem;
-  right: 8rem;
-  z-index: 20;
-}
+    position: fixed;
+    top: 7rem;
+    right: 8rem;
+    z-index: 20;
+  }
 
-.image-wrapper.compact app-image-particles {
-  transform: scale(0.5);
-  transform-origin: top right;
+  .image-wrapper.compact app-image-particles {
+    transform: scale(0.5);
+    transform-origin: top right;
+  }
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
 
-/* Tablets y laptops pequeñas */
+/* Tablet: ≤1024px */
 @media (max-width: 1024px) {
   .contenedor {
     flex-direction: column;
     margin: 3rem 4rem 2rem;
-    gap: 0rem;
+    gap: 0;
   }
 
   .image-wrapper {
     order: -1;
-    position: relative;
     margin-bottom: 1.2rem;
   }
 
-  .image-wrapper.compact {
-    position: relative;
-    top: auto;
-    right: auto;
-    z-index: auto;
+  .about-text {
+    max-width: 100%;
+    padding-right: 0;
   }
 
   .image-wrapper app-image-particles {
     transform: scale(0.85);
   }
-
-  .about-text,
-  .about-text.expand {
-    max-width: 100%;
-    padding-right: 0;
-  }
 }
 
-/* Móviles grandes */
+/* Mobile: ≤768px */
 @media (max-width: 768px) {
   .contenedor {
     margin: 2rem 1.5rem;
@@ -131,22 +127,17 @@
 
   .about-text p {
     font-size: 1rem;
-    text-align: left;
   }
 }
 
-/* Móviles pequeños */
+/* Mobile pequeño: ≤480px (solo si es necesario) */
 @media (max-width: 480px) {
   .contenedor {
     margin: 1.5rem 1rem;
   }
 
   .image-wrapper {
-    margin-bottom: 0.8rem;
-  }
-
-  .image-wrapper app-image-particles {
-    transform: scale(0.65);
+    display: none;
   }
 
   .about-text h1 {
@@ -157,3 +148,4 @@
     font-size: 0.95rem;
   }
 }
+

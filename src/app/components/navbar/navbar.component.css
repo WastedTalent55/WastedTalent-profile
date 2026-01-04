@@ -41,4 +41,62 @@
   color: var(--color-accent-soft);
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablet: ≤1024px */
+@media (max-width: 1024px) {
+  .navbar {
+    flex-wrap: wrap; 
+    justify-content: center;
+
+    border-left: none;
+  }
+
+  .menu {
+   flex-wrap: wrap; 
+   justify-content: space-between; 
+  }
+}
+
+/* Mobile: ≤768px */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .menu {
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* Mobile pequeño: ≤480px*/
+@media (max-width: 480px) {
+  .navbar {
+    position: relative; /* bye sticky */
+    height: auto;
+
+    padding: 1rem 0.5rem;
+    margin-left: 0;
+
+    /* quitamos decoración que estorba */
+    border-bottom: none;
+    border-bottom-left-radius: 0;
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .menu a {
+    font-size: 0.95rem;
+  }
+}
+
+
+
 

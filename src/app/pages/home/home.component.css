@@ -192,6 +192,8 @@ section a {
 /* =========================
    RESPONSIVE
 ========================= */
+
+/*≤1024px → reacomodo estructural*/
 @media (max-width: 1024px) {
   .home {
     flex-direction: column;
@@ -224,6 +226,7 @@ section a {
   }
 }
 
+/*≤768px → centrado, stacking, tamaños*/
 @media (max-width: 768px) {
   .home {
     padding: 1rem;
@@ -252,3 +255,8 @@ section a {
     padding-left: 2.5rem;
   }
 }
+
+/*≤480px → ajustes finos*/
+
+
+
