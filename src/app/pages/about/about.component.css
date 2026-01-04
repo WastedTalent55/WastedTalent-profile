@@ -1,17 +1,22 @@
+/* =========================
+   CONTENEDOR GENERAL
+========================= */
 .contenedor {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: 3rem 8rem 1rem;
+  gap: 2rem;
 }
 
-/* ───────── TEXTO ───────── */
-
+/* =========================
+   TEXTO
+========================= */
 .about-text {
   max-width: 55%;
   transition:
-    max-width 1.2s cubic-bezier(.22,1,.36,1),
-    padding 1.2s cubic-bezier(.22,1,.36,1);
+    max-width 1.2s cubic-bezier(.22, 1, .36, 1),
+    padding-right 1.2s cubic-bezier(.22, 1, .36, 1);
 }
 
 .about-text.expand {
@@ -20,39 +25,135 @@
 }
 
 .about-text h1 {
-  color: #bfa0ff;
+  color: var(--color-accent-light, #bfa0ff);
 }
 
 .about-text p {
-  color: #f7f7f7;
-  text-align: justify;
   margin-top: 0.5rem;
+  color: var(--color-text, #f7f7f7);
+  text-align: justify;
 }
 
-/* ───────── IMAGEN ───────── */
-
+/* =========================
+   IMAGEN (WRAPPER)
+========================= */
 .image-wrapper {
   position: relative;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
 
   transition:
-    transform 1.15s cubic-bezier(.34,1.56,.64,1),
-    top 1.2s cubic-bezier(.22,1,.36,1),
-    right 1.2s cubic-bezier(.22,1,.36,1);
+    top 1.2s cubic-bezier(.22, 1, .36, 1),
+    right 1.2s cubic-bezier(.22, 1, .36, 1);
+}
+
+/* =========================
+   IMAGEN (CONTENIDO REAL)
+========================= */
+.image-wrapper app-image-particles {
+  display: block;
+  transform-origin: top center;
+  transition: transform 0.9s cubic-bezier(.34, 1.56, .64, 1);
 }
 
 /* respiración previa */
-.image-wrapper.pre-compact {
+.image-wrapper.pre-compact app-image-particles {
   transform: scale(1.04);
 }
 
-/* estado final */
+/* estado compacto (desktop) */
 .image-wrapper.compact {
   position: fixed;
   top: 7rem;
   right: 8rem;
+  z-index: 20;
+}
 
+.image-wrapper.compact app-image-particles {
   transform: scale(0.5);
   transform-origin: top right;
-  z-index: 20;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablets y laptops pequeñas */
+@media (max-width: 1024px) {
+  .contenedor {
+    flex-direction: column;
+    margin: 3rem 4rem 2rem;
+    gap: 0rem;
+  }
+
+  .image-wrapper {
+    order: -1;
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+
+  .image-wrapper.compact {
+    position: relative;
+    top: auto;
+    right: auto;
+    z-index: auto;
+  }
+
+  .image-wrapper app-image-particles {
+    transform: scale(0.85);
+  }
+
+  .about-text,
+  .about-text.expand {
+    max-width: 100%;
+    padding-right: 0;
+  }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+  .contenedor {
+    margin: 2rem 1.5rem;
+  }
+
+  .image-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  .image-wrapper app-image-particles {
+    transform: scale(0.75);
+  }
+
+  .about-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .about-text p {
+    font-size: 1rem;
+    text-align: left;
+  }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+  .contenedor {
+    margin: 1.5rem 1rem;
+  }
+
+  .image-wrapper {
+    margin-bottom: 0.8rem;
+  }
+
+  .image-wrapper app-image-particles {
+    transform: scale(0.65);
+  }
+
+  .about-text h1 {
+    font-size: 1.4rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+  }
 }
